@@ -1,21 +1,17 @@
 from django.urls import path
+
 from .views import (
-    RegisterView, 
+    LoginView,
     ProfileView,
-    #LoginView,
-    #RefreshTokenView,
+    RefreshView,
+    RegisterView,
 )
 
-urlpattersn =[
+urlpatterns = [
     path(
-        "register/", 
-        RegisterView.as_view(), 
-        name="register"
-    ),
-    path(
-        "profile/",
-        ProfileView.as_view(),
-        name="profile",
+        "register/",
+        RegisterView.as_view(),
+        name="register",
     ),
     path(
         "login/",
@@ -24,7 +20,12 @@ urlpattersn =[
     ),
     path(
         "refresh/",
-        RefreshTokenView.as_view(),
+        RefreshView.as_view(),
         name="refresh",
+    ),
+    path(
+        "profile/",
+        ProfileView.as_view(),
+        name="profile",
     ),
 ]
