@@ -116,6 +116,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Custom user model
+AUTH_USER_MODEL = "users.User"
+
+# Media files (uploads)
+MEDIA_URL = "/media/"
+#MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = BASE_DIR / "media"
+
 # CORS settings
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
