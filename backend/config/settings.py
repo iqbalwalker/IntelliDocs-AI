@@ -31,6 +31,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 #DEBUG = True
 DEBUG = os.getenv("DEBUG") == "True"
 
+# GEMINI API Key
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
 #ALLOWED_HOSTS = []
 ALLOWED_HOSTS = os.getenv(
     "ALLOWED_HOSTS",

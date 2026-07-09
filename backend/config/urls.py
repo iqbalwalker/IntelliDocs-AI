@@ -27,6 +27,11 @@ urlpatterns = [
         "api/auth/",
         include("apps.users.urls"),
     ),
+    
+    path(
+        "api/documents/",
+        include("apps.documents.urls"),
+    ),
 ]
 
 
