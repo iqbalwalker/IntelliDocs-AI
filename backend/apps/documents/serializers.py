@@ -11,10 +11,12 @@ class DocumentUploadSerializer(serializers.ModelSerializer):
             "file",
         )
 
+
     def validate_file(self, file):
-        if not file.name.lower().endswith(".pdf"):
+        allowed_extensions = (".pdf",".docx", ".txt")
+        if not file.name.lower().endswith(allowed_extensions):
             raise serializers.ValidationError(
-                "Only PDF files are allowed."
+                "Only PDF, DOCX and TXT files are allowed."
             )
 
         max_size = 10 * 1024 * 1024  # 10 MB
@@ -25,6 +27,11 @@ class DocumentUploadSerializer(serializers.ModelSerializer):
             )
 
         return file
+    
+   #def validate_title(self, attrs):
+    #    if not attrs.get("title"):
+     #       attrs["title"] = attrs["file"].name
+      #  return attrs 
 
 
 class DocumentSerializer(serializers.ModelSerializer):
