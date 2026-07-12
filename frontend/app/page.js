@@ -1,11 +1,5 @@
-import AuthCard from "@/components/ui/auth/AuthCard";
+import { redirect } from "next/navigation";
 
-import LoginForm from "@/components/ui/auth/LoginForm";
-
-export default function LoginPage() {
-    return (
-        <AuthCard title="Welcome Back">
-            <LoginForm />
-        </AuthCard>
-    );
+export default function Home() {
+    redirect("/login");
 }

@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 
 import FormInput from "./FormInput";
 
-import { login } from "@/services/auth.service";
+import { login, getProfile } from "@/services/auth.service";
 import useAuthStore from "@/store/authstore";
 
 export default function LoginForm() {
@@ -21,37 +21,33 @@ export default function LoginForm() {
 
     const [loading, setLoading] = useState(false);
 
-    async function handleSubmit(e) {
-        e.preventDefault();
+async function handleSubmit(e) {
+    e.preventDefault();
 
-        try {
-            setLoading(true);
+    try {
+        setLoading(true);
 
-            const tokens = await login({
-                email,
-                password,
-            });
+        const result = await login({
+            email,
+            password,
+        });
 
-            loginStore(tokens);
 
-            const user = await getProfile();
+        loginStore(result.tokens, result.user);
 
-            setUser(user);
+        setUser(result.user);
 
-            router.push("/dashboard");
+        router.push("/dashboard");
 
-        } catch (error) {
+    } catch (error) {
+        console.error("Login failed:", error);
 
-            console.error(error);
+        alert("Login failed. Please check your credentials and try again.");
 
-            alert("Invalid credentials");
-
-        } finally {
-
-            setLoading(false);
-
-        }
+    } finally {
+        setLoading(false);
     }
+}
 
     return (
         <form
@@ -82,6 +78,7 @@ export default function LoginForm() {
 
             <Button
                 className="w-full"
+                type="submit"
                 disabled={loading}
             >
                 {loading
